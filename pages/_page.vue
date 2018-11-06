@@ -11,7 +11,7 @@
       <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
       <div>
         <hr>
-        <pre class="is-size-6">Name: {{ this.name }}
+        <pre class="is-size-7 has-text-light has-background-dark">Name: {{ this.name }}
         <br>Path: {{ this.path }}
         <br>payload: {{ route }} </pre>     
         <div :class="['network',online ? 'online' : 'offline']">
@@ -98,11 +98,11 @@ img {
   padding: 3px 6px 1px 0;
 }
 
-pre {
+/* pre {
   text-decoration-color: white;
   white-space: pre-wrap;
   background: black;
-}
+} */
 
 .fourzerofour {
   font-size: 800%;
