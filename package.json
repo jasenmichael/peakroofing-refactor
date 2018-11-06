@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-pwa-apollo-1drupal-graphql-boilerplate",
+  "name": "nuxt-pwa-apollo-drupal-graphql-boilerplate",
   "version": "1.0.0",
   "description": "A Nuxt.js PWA boilerplate with for accessing Drupal as a de-coupled backend using Apollo and Graphql",
   "author": "jasenmichael <jasen@ready-builder.com>",
