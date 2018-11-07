@@ -33,7 +33,7 @@ export default {
       variables() {
         return {
           path: this.$route.path
-        };
+        }
       }
     },
     menuByName: {

@@ -1,11 +1,12 @@
 <template>
+<div>
   <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://bulma.io">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
       </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -14,17 +15,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">
-          Home
-        </a>
-
-        <a class="navbar-item" href="/about">
-          About Us
-        </a>
-
-        <a class="navbar-item" href="contact-us">
-          Contact Us
-        </a>
+        <a class="navbar-item" v-for="link in menuByName.links" v-bind:key="link" :href="link.url.path" v-html="link.label"/>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -60,6 +51,7 @@
       </div>
     </div>
   </nav>
+</div>
 </template>
 
 <script>
@@ -69,6 +61,21 @@ export default {
   data() {
     return {};
   },
+  // mounted() {
+  //   this.getMenu()
+  // },
+  // methods: {
+  //   getMenu(){
+  //     console.log('gettin it')
+  //     const client = this.$apollo.getClient()
+  //     let variables = {name: "main"}
+  //     this.$apollo.query({query: menuQuery, variables: this.variables})
+  //       .then(({ data }) => {
+  //         // do what you want with data
+  //         console.log('yo', data)
+  //       })
+  //   }
+  // }
   apollo: {
     menuByName: {
       prefetch: true,
@@ -80,8 +87,11 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style>
+pre {
+  margin-top: 3rem; 
+}
 </style>
