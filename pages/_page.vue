@@ -1,5 +1,5 @@
 <template>
-  <div v-if="route === null">
+  <div v-if="(route === null || route == undefined)">
     <section class="content has-text-centered">
       <h1 class="is-size-4">Oops.. "{{ this.$nuxt.$route.params.page }}" not found...</h1>
       <h2 class="fourzerofour">404</h2>
@@ -21,7 +21,6 @@ export default {
   layout: 'page',
   data() {
     return {
-      online: true,
       name: this.$nuxt.$route.params.page,
       path: this.$nuxt.$route.path,
       type: this.$nuxt.$route.name
