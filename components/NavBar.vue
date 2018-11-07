@@ -14,12 +14,16 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item">
+        <a class="navbar-item" href="/">
           Home
         </a>
 
-        <a class="navbar-item">
-          Documentation
+        <a class="navbar-item" href="/about">
+          About Us
+        </a>
+
+        <a class="navbar-item" href="contact-us">
+          Contact Us
         </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
@@ -28,14 +32,11 @@
           </a>
 
           <div class="navbar-dropdown">
-            <a class="navbar-item">
+            <a class="navbar-item" href="/about">
               About
             </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
+            <a class="navbar-item" href="/contact-us">
+              Contact Us
             </a>
             <hr class="navbar-divider">
             <a class="navbar-item">
@@ -66,7 +67,7 @@ import menuQuery from "~/queries/menuQuery.gql";
 
 export default {
   data() {
-    return {}
+    return {};
   },
   apollo: {
     menuByName: {
@@ -74,12 +75,12 @@ export default {
       query: menuQuery,
       variables() {
         return {
-          name: 'main'
-        }
+          name: "main"
+        };
       }
     }
   }
-}
+};
 </script>
 
 <style>
