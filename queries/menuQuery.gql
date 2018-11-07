@@ -1,0 +1,17 @@
+query menuQuery($name: String!) 
+{
+  menuByName(name: $name) {
+    # name
+    # description
+    links {
+      # expanded
+      description
+      # attribute
+      label
+      url {
+        # routed
+        path
+      }
+    }
+  }
+}

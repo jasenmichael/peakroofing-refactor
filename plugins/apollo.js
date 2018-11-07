@@ -4,9 +4,9 @@ export default function(context){
         // optional
         // See https://www.apollographql.com/docs/link/links/http.html#options
         httpLinkOptions: {
-        //   credentials: 'same-origin'
+          credentials: 'same-origin'
         },
-        // includeNodeModules: true
+        includeNodeModules: true
         // You can use `wss` for secure connection (recommended in production)
         // Use `null` to disable subscriptions
         // wsEndpoint: 'ws://localhost:4000', // optional

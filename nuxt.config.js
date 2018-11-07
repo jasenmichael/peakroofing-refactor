@@ -25,6 +25,9 @@ module.exports = {
   manifest: {
     theme_color: '#3B8070'
   },
+  plugins: [
+    '~/plugins/fontawesome.js'
+  ],
   /*
    ** Modules
    */
@@ -34,6 +37,8 @@ module.exports = {
     '@nuxtjs/apollo',
     '@nuxtjs/dotenv',
     '@nuxtjs/bulma',
+    '@nuxtjs/font-awesome',
+    'nuxt-fontawesome',
     'nuxt-robots-module'
   ],
 

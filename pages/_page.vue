@@ -1,37 +1,24 @@
 <template>
   <div v-if="route === null">
-    <section class="has-text-centered">
+    <section class="content has-text-centered">
       <h1 class="is-size-4">Oops.. "{{ this.$nuxt.$route.params.page }}" not found...</h1>
       <h2 class="fourzerofour">404</h2>
     </section>  
   </div>
   <div v-else>
-    <section class="container">
+    <section class="content container">
       <h1 class="is-size-1" v-html="route.nodeContext.title"/>
       <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
-      <div>
-        <hr>
-        <pre class="is-size-7 has-text-light has-background-dark">Name: {{ this.name }}
-        <br>Path: {{ this.path }}
-        <br>payload: {{ route }} </pre>     
-        <div :class="['network',online ? 'online' : 'offline']">
-          <div class="circle"></div>
-            {{ online ? 'online' : 'offline' }}
-        </div>
-      </div>
     </section>
   </div>
-
 </template>
 
 <script>
-// https://github.com/vuejs/vuex-router-sync
-// import { sync } from 'vuex-router-sync'
-import Logo from "~/components/Logo.vue";
+import menuQuery from "~/queries/menuQuery.gql";
 import pageQuery from "~/queries/pageQuery.gql";
 
 export default {
-  components: { Logo },
+  layout: 'page',
   data() {
     return {
       online: true,
@@ -42,7 +29,6 @@ export default {
   },
   apollo: {
     route: {
-      // prefetch: true,
       prefetch: ({ route }) => ({ path: route.path }),
       query: pageQuery,
       variables() {
@@ -50,47 +36,27 @@ export default {
           path: this.$route.path
         };
       }
+    },
+    menuByName: {
+      prefetch: true,
+      query: menuQuery,
+      variables() {
+        return {
+          name: 'main'
+        }
+      }
     }
   },
   beforeCreate() {},
   beforeMount() {
-    // this.getPagePayload()
   },
-  mounted() {
-    if (!window.navigator) {
-      this.online = false;
-      return;
-    }
-    this.online = Boolean(window.navigator.onLine);
-    window.addEventListener("offline", this._toggleNetworkStatus);
-    window.addEventListener("online", this._toggleNetworkStatus);
-  },
-  methods: {
-    _toggleNetworkStatus({ type }) {
-      this.online = type === "online";
-    }
-  },
-  destroyed() {
-    window.removeEventListener("offline", this._toggleNetworkStatus);
-    window.removeEventListener("online", this._toggleNetworkStatus);
-  }
+  mounted() {},
+  methods: {},
+  destroyed() {}
 };
 </script>
 
-<style>
-.network .circle {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  background: green;
-  padding: 0.1rem 0.5rem;
-  border-radius: 1rem;
-}
-
-.network.offline .circle {
-  background: red;
-}
-
+<style scoped>
 img {
   width: 40vw;
   float: left;
@@ -98,13 +64,17 @@ img {
   padding: 3px 6px 1px 0;
 }
 
-/* pre {
-  text-decoration-color: white;
-  white-space: pre-wrap;
-  background: black;
-} */
-
 .fourzerofour {
   font-size: 800%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+.content {
+  margin-top: 4rem;
 }
 </style>

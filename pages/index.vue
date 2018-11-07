@@ -1,107 +1,72 @@
 <template>
-  <section class="container">
-    <div>
-      <pre v-html="this.$store.state.route" />
-      <pre> {{ this.$store.state.pages.home.path }} </pre>
-      <logo/>
-      <h1 class="title">
-        NUXT
-      </h1>
-      <h2 class="subtitle">
-        PWA Vue.js Application
-      </h2>
-      <div :class="['network',online ? 'online' : 'offline']">
-        <div class="circle"></div>
-        {{ online ? 'online' : 'offline' }}
-      </div>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green" rel="noopener">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </section>
+    <section class="container">
+      <h1 class="is-size-1" v-html="route.nodeContext.title"/>
+      <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
+    </section>
 </template>
 
 <script>
-  import Logo from '~/components/Logo.vue'
+import menuQuery from "~/queries/menuQuery.gql";
+import pageQuery from "~/queries/pageQuery.gql";
 
-  export default {
-    components: {Logo},
-    data () {
-      return {
-        online: true
+export default {
+  layout: 'index',
+  data() {
+    return {
+      online: true,
+      name: this.$nuxt.$route.params.page,
+      path: this.$nuxt.$route.path,
+      type: this.$nuxt.$route.name
+    };
+  },
+  apollo: {
+    route: {
+      // prefetch: true,
+      prefetch: true,
+      query: pageQuery,
+      variables() {
+        return {
+          path: '/home'
+        }
       }
     },
-    mounted () {
-      if (!window.navigator) {
-        this.online = false
-        return
+    menuByName: {
+      prefetch: true,
+      query: menuQuery,
+      variables() {
+        return {
+          name: 'main'
+        }
       }
-      this.online = Boolean(window.navigator.onLine)
-      window.addEventListener('offline', this._toggleNetworkStatus)
-      window.addEventListener('online', this._toggleNetworkStatus)
-    },
-    methods: {
-      _toggleNetworkStatus ({ type }) {
-        this.online = type === 'online'
-      }
-    },
-    destroyed () {
-      window.removeEventListener('offline', this._toggleNetworkStatus)
-      window.removeEventListener('online', this._toggleNetworkStatus)
     }
+  },
+  mounted () {
+    if (!window.navigator) {
+      this.online = false
+      return
+    }
+    this.online = Boolean(window.navigator.onLine)
+    window.addEventListener('offline', this._toggleNetworkStatus)
+    window.addEventListener('online', this._toggleNetworkStatus)
+  },
+  methods: {
+    _toggleNetworkStatus ({ type }) {
+      this.online = type === 'online'
+    }
+  },
+  destroyed () {
+    window.removeEventListener('offline', this._toggleNetworkStatus)
+    window.removeEventListener('online', this._toggleNetworkStatus)
   }
+}
 </script>
 
 <style>
-  .container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .title {
-    font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-
-  .links {
-    padding-top: 15px;
-  }
-
-  .network {
-    font-weight: 400;
-    font-size: 1rem;
-  }
-
-  .network .circle {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    background: green;
-    padding: .1rem .5rem;
-    border-radius: 1rem;
-  }
-
-  .network.offline .circle {
-    background: red;
-  }
-
- pre {
-  text-align: left;
- }
+img {
+  /* width: 40vw; */
+  max-width: 400px;
+  float: left;
+  margin: 0.4rem 0.4rem -0.6rem;
+  padding: 3px 6px 1px 0;
+}
 </style>
