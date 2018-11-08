@@ -20,5 +20,5 @@ $ npm start
 
 ## todo
 - [x] display main menu v-for
-- [ ] componentize queries
+- [x] componentize queries
 - [ ] 
