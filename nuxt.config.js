@@ -31,7 +31,7 @@ module.exports = {
     'nuxt-vuex-router-sync',
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
+    '@nuxtjs/dotenv', { systemvars: true },
     '@nuxtjs/bulma',
     '@nuxtjs/font-awesome',
     'nuxt-fontawesome',
