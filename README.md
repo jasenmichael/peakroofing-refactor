@@ -11,7 +11,7 @@ $ cp example.env .env
 
 open .env
 change the backend api url
-rest_URL="http://your-drupal-url.com"
+REST_URL="http://your-drupal-url.com"
 
 $ npm run dev
 

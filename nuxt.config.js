@@ -38,7 +38,7 @@ module.exports = {
   ],
 
   axios: {
-    baseURL: process.env.rest_URL,
+    baseURL: process.env.REST_URL,
     proxyHeaders: true,
     credentials: false,
     proxy: true
