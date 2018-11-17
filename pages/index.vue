@@ -2,8 +2,8 @@
     <section class="container">
       <!-- when I uncomment this it works because the state is populated
       but if I hard refresh it is broken -->
-      <!-- <h1 v-html='pageContent.title' />
-      <div v-html='pageContent.body.value' /> -->
+      <h1 v-html='pageContent.title' />
+      <div v-html='pageContent.body.value' />
       <hr>
       <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2>
       <pre> {{ pageContent }} </pre>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { getPageContentByTitle } from '~/lib/api'
+import { getPageContentByPath } from '~/lib/api'
 
 export default {
   layout: 'index',
@@ -23,23 +23,32 @@ export default {
       pageContent: this.$store.state.pages.home
     }
   },
-  created() {
-    this.getPageContentByTitle("home")
-  },
-  methods: {
-    getPageContentByTitle(title) {
-      if (this.$store.state.pages.home === undefined ) {
-      return getPageContentByTitle(title)
+  fetch({store, route}) {
+    if (store.state.pages[route.params.page] === undefined ) {
+      return getPageContentByPath("/home")
         .then((res) => {
-        this.$store.state.pages.home = res.data[0].attributes
-        this.pageContent = this.$store.state.pages.home
-        })
-      }
-      else {
-        this.pageContent = this.$store.state.pages.home
-      }
+        store.state.pages.home = res.data[0].attributes
+        this.pageContent = store.state.pages.home
+      })
     }
   }
+  // created() {
+  //   this.getPageContentByTitle("home")
+  // },
+  // methods: {
+  //   getPageContentByTitle(title) {
+  //     if (this.$store.state.pages.home === undefined ) {
+  //     return getPageContentByTitle(title)
+  //       .then((res) => {
+  //       this.$store.state.pages.home = res.data[0].attributes
+  //       this.pageContent = this.$store.state.pages.home
+  //       })
+  //     }
+  //     else {
+  //       this.pageContent = this.$store.state.pages.home
+  //     }
+  //   }
+  // }
 }
 </script>
 
