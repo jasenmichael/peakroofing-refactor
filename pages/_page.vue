@@ -1,6 +1,11 @@
 <template>
     <section class="container">
-      <h1>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h1>
+      <!-- when I uncomment this it works because the state is populated
+      but if I hard refresh it is broken -->
+      <!-- <h1 v-html='pageContent.title' />
+      <div v-html='pageContent.body.value' /> -->
+      <hr>
+      <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2>
       <pre> {{ pageContent }} </pre>
     </section>
 </template>
@@ -19,18 +24,14 @@ export default {
     }
   },
   created() {
-    // here we explicitly passing "home", we can re-use this in our _page.vue
-    // but we need the query to filter by url alias - see getPageContentByPath function in api.js
     this.getPageContentByPath(this.path)
   },
   methods: {
     getPageContentByPath(path) {
-      console.log(path)
       if (this.$store.state.pages[this.name] === undefined ) {
       return getPageContentByPath(this.path)
         .then((res) => {
         this.$store.state.pages[this.name] = res.data[0].attributes
-        // this.pageContent = res.data[0].attributes
         this.pageContent = this.$store.state.pages[this.name]
         })
       }

@@ -24,8 +24,6 @@ export default {
     }
   },
   created() {
-    // here we explicitly passing "home", we can re-use this in our _page.vue
-    // but we need the query to filter by url alias - see getPageContentByPath function in api.js
     this.getPageContentByTitle("home")
   },
   methods: {
@@ -34,7 +32,6 @@ export default {
       return getPageContentByTitle(title)
         .then((res) => {
         this.$store.state.pages.home = res.data[0].attributes
-        // this.pageContent = res.data[0].attributes
         this.pageContent = this.$store.state.pages.home
         })
       }
