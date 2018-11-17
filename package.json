@@ -1,23 +1,25 @@
 {
-  "name": "nuxt-pwa-apollo-drupal-graphql-boilerplate",
+  "name": "nuxt-pwa-drupal-rest-boilerplate",
   "version": "1.0.0",
-  "description": "A Nuxt.js PWA boilerplate with for accessing Drupal as a de-coupled backend using Apollo and Graphql",
+  "description": "A Nuxt.js PWA boilerplate with for accessing Drupal as a de-coupled backend using JSON api modules",
   "author": "jasenmichael <jasen@ready-builder.com>",
   "private": true,
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.4.2",
     "@fortawesome/free-regular-svg-icons": "^5.4.2",
     "@fortawesome/free-solid-svg-icons": "^5.4.2",
-    "@nuxtjs/font-awesome": "^1.0.3",
-    "nuxt-fontawesome": "^0.3.0",
-    "@nuxtjs/apollo": "^4.0.0-rc2.3",
+    "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/bulma": "^1.2.1",
     "@nuxtjs/dotenv": "^1.3.0",
+    "@nuxtjs/font-awesome": "^1.0.3",
     "@nuxtjs/pwa": "latest",
-    "graphql-tag": "^2.10.0",
+    "jsonapi-parse": "^2.0.0",
     "nuxt": "latest",
+    "nuxt-fontawesome": "^0.3.0",
     "nuxt-robots-module": "^1.3.0",
-    "nuxt-vuex-router-sync": "0.0.2"
+    "nuxt-vuex-router-sync": "0.0.2",
+    "qs": "^6.5.2",
+    "vuex-persistedstate": "^2.5.4"
   },
   "scripts": {
     "dev": "nuxt",
