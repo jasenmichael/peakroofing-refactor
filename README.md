@@ -1,5 +1,5 @@
 # nuxt-pwa-drupal-json-starter
-> name says it all
+> name says it all  
 
 ## Setup
 
