@@ -1,8 +1,9 @@
-# nuxt-pwa-starter
-
+# nuxt-pwa-drupal-json-starter
 > name says it all
 
-## Build Setup
+## Setup
+
+clone and cd into the directory
 
 ``` bash
 $ npm i
@@ -10,7 +11,7 @@ $ cp example.env .env
 
 open .env
 change the backend api url
-API1_URL="http://yourDrupalSite.com/graphql"
+rest_URL="http://your-drupal-url.com"
 
 $ npm run dev
 
@@ -19,8 +20,4 @@ $ npm run build
 $ npm start
 
 ## todo
-- [x] display main menu v-for
-- [x] componentize queries
-- [x] bind query results to state and local.storage
-- [ ] skip content query if exist in local.storage
-- [ ] if in local.storage, query last updated and compare to local.storage last update, then query content if has been updated
+- [ ] make a todo list
