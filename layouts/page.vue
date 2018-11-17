@@ -6,20 +6,15 @@
 </template>
 
 <script>
-import NavBar from '~/components/NavBar.vue'
+import NavBar from "~/components/NavBar.vue"
+
 export default {
-  components: {
-    NavBar
-  },
+  components: { NavBar },
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>
 
 <style>
-.icon {
-  text-align: center;
-}
 </style>

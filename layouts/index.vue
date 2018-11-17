@@ -37,12 +37,12 @@
 </template>
 
 <script>
-const pkg = require('~/package')
-import Logo from '~/components/Logo.vue'
-import NavBar from '~/components/NavBar.vue'
+const pkg = require("~/package")
+import Logo from "~/components/Logo.vue"
+import NavBar from "~/components/NavBar.vue"
 
 export default {
-  components: {Logo, NavBar},
+  components: { Logo, NavBar },
   data() {
     return {
       pkg
