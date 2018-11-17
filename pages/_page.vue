@@ -1,10 +1,12 @@
 <template>
     <section class="container">
       <h1>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h1>
+      <pre> {{ pageContent }} </pre>
     </section>
 </template>
 
 <script>
+import { getPageContentByPath } from '~/lib/api'
 
 export default {
   layout: 'page',
@@ -12,12 +14,31 @@ export default {
     return {
       name: this.$nuxt.$route.params.page,
       path: this.$nuxt.$route.path,
-      type: this.$nuxt.$route.name
-    };
+      type: this.$nuxt.$route.name,
+      pageContent: this.$store.state.pages[this.$nuxt.$route.params.page]
+    }
   },
-  mounted () {},
-  methods: {},
-  destroyed () {}
+  created() {
+    // here we explicitly passing "home", we can re-use this in our _page.vue
+    // but we need the query to filter by url alias - see getPageContentByPath function in api.js
+    this.getPageContentByPath(this.path)
+  },
+  methods: {
+    getPageContentByPath(path) {
+      console.log(path)
+      if (this.$store.state.pages[this.name] === undefined ) {
+      return getPageContentByPath(this.path)
+        .then((res) => {
+        this.$store.state.pages[this.name] = res.data[0].attributes
+        // this.pageContent = res.data[0].attributes
+        this.pageContent = this.$store.state.pages[this.name]
+        })
+      }
+      else {
+        this.pageContent = this.$store.state.pages[this.name]
+      }
+    }
+  }
 }
 </script>
 
