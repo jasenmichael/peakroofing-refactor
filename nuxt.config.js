@@ -9,6 +9,9 @@ module.exports = {
   // Build configuration
   build: {},
 
+  // allow non ssl http requests
+  serverMiddleware: ['redirect-ssl'],
+
   // Headers
   // Common headers are already provided by @nuxtjs/pwa preset
   head: {},
