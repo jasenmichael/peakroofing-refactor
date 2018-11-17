@@ -1,21 +1,10 @@
 <template>
-  <div v-if="(route === null || route == undefined)">
-    <section class="content has-text-centered">
-      <h1 class="is-size-4">Oops.. "{{ this.$nuxt.$route.params.page }}" not found...</h1>
-      <h2 class="fourzerofour">404</h2>
-    </section>  
-  </div>
-  <div v-else>
-    <section class="content container">
-      <h1 class="is-size-1" v-html="route.nodeContext.title"/>
-      <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
+    <section class="container">
+      <h1>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h1>
     </section>
-  </div>
 </template>
 
 <script>
-import menuQuery from "~/queries/menuQuery.gql";
-import pageQuery from "~/queries/pageQuery.gql";
 
 export default {
   layout: 'page',
@@ -26,54 +15,22 @@ export default {
       type: this.$nuxt.$route.name
     };
   },
-  apollo: {
-    route: {
-      prefetch: ({ route }) => ({ path: route.path }),
-      query: pageQuery,
-      variables() {
-        return {
-          path: this.$route.path
-        }
-      }
-    },
-    menuByName: {
-      prefetch: true,
-      query: menuQuery,
-      variables() {
-        return {
-          name: 'main'
-        }
-      }
-    }
-  },
-  beforeCreate() {},
-  beforeMount() {
-  },
-  mounted() {},
+  mounted () {},
   methods: {},
-  destroyed() {}
-};
+  destroyed () {}
+}
 </script>
 
 <style scoped>
+h1 {
+  padding-top: 4em;
+}
+
 img {
-  width: 40vw;
+  /* width: 40vw; */
+  max-width: 400px;
   float: left;
   margin: 0.4rem 0.4rem -0.6rem;
   padding: 3px 6px 1px 0;
-}
-
-.fourzerofour {
-  font-size: 800%;
-  margin: 0;
-  padding: 0;
-}
-
-h2 {
-  margin: 0;
-}
-
-.content {
-  margin-top: 4rem;
 }
 </style>

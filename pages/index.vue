@@ -1,62 +1,47 @@
 <template>
     <section class="container">
-      <h1 class="is-size-1" v-html="route.nodeContext.title"/>
-      <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
+      <!-- when I uncomment this it works because the state is populated
+      but if I hard refresh it is broken -->
+      <!-- <h1 v-html='pageContent.title' />
+      <div v-html='pageContent.body.value' /> -->
+      <hr>
+      <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2>
+      <pre> {{ pageContent }} </pre>
     </section>
 </template>
 
 <script>
-import menuQuery from "~/queries/menuQuery.gql";
-import pageQuery from "~/queries/pageQuery.gql";
+import { getPageContentByTitle } from '~/lib/api'
 
 export default {
   layout: 'index',
   data() {
     return {
-      online: true,
       name: this.$nuxt.$route.params.page,
       path: this.$nuxt.$route.path,
-      type: this.$nuxt.$route.name
-    };
-  },
-  apollo: {
-    route: {
-      // prefetch: true,
-      prefetch: true,
-      query: pageQuery,
-      variables() {
-        return {
-          path: '/home'
-        }
-      }
-    },
-    menuByName: {
-      prefetch: true,
-      query: menuQuery,
-      variables() {
-        return {
-          name: 'main'
-        }
-      }
+      type: this.$nuxt.$route.name,
+      pageContent: this.$store.state.pages.home
     }
   },
-  mounted () {
-    if (!window.navigator) {
-      this.online = false
-      return
-    }
-    this.online = Boolean(window.navigator.onLine)
-    window.addEventListener('offline', this._toggleNetworkStatus)
-    window.addEventListener('online', this._toggleNetworkStatus)
+  created() {
+    // here we explicitly passing "home", we can re-use this in our _page.vue
+    // but we need the query to filter by url alias - see getPageContentByPath function in api.js
+    this.getPageContentByTitle("home")
   },
   methods: {
-    _toggleNetworkStatus ({ type }) {
-      this.online = type === 'online'
+    getPageContentByTitle(title) {
+      if (this.$store.state.pages.home === undefined ) {
+      return getPageContentByTitle(title)
+        .then((res) => {
+        this.$store.state.pages.home = res.data[0].attributes
+        // this.pageContent = res.data[0].attributes
+        this.pageContent = this.$store.state.pages.home
+        })
+      }
+      else {
+        this.pageContent = this.$store.state.pages.home
+      }
     }
-  },
-  destroyed () {
-    window.removeEventListener('offline', this._toggleNetworkStatus)
-    window.removeEventListener('online', this._toggleNetworkStatus)
   }
 }
 </script>

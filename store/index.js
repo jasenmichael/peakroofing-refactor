@@ -1,20 +1,18 @@
 import Vuex from 'vuex'
+// import createPersistedState from 'vuex-persistedstate'
 
 const createStore = () => {
   return new Vuex.Store({
     state: () => ({
-      currentPath: "/",
-      pages: {
-          home: {
-              path: "/home"
-          },
-          about: {
-              path: "/about"
-          }
+      pages: {},
+      menus: {
+        // main: [],
+        // footer: []
       },
-      menus: {},
       galleries: {}
     }),
+
+
     mutations: {},
     actions: {}
   })
