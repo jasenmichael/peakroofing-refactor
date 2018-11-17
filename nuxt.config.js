@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 
 module.exports = {
   env: {
@@ -31,7 +31,7 @@ module.exports = {
     'nuxt-vuex-router-sync',
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv', { systemvars: true },
+    ['@nuxtjs/dotenv', { systemvars: true }],
     '@nuxtjs/bulma',
     '@nuxtjs/font-awesome',
     'nuxt-fontawesome',
