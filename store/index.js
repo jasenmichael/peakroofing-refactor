@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: () => ({
+      subDir: (process.env.SUB_DIR || ""),
       pages: {},
       menus: {
         // main: [],

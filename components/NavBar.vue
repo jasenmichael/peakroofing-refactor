@@ -27,7 +27,7 @@
       v-bind:class="{ 'is-active' : showNav }"
     >
       <div class="navbar-start">
-        <nuxt-link class="navbar-item" v-for="(item, index) in mainMenu" v-bind:key="index" :to="item.link.url" v-html="item.link.title"/>
+        <nuxt-link class="navbar-item" v-for="(item, index) in mainMenu" v-bind:key="index" :to="item.link.url.replace($store.state.subDir, '')" v-html="item.link.title"/>
       </div>
     </div>
   </nav>

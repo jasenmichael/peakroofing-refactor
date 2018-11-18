@@ -1,7 +1,5 @@
 <template>
     <section class="container">
-      <!-- when I uncomment this it works because the state is populated
-      but if I hard refresh it is broken -->
       <h1 v-html='pageContent.title' />
       <div v-html='pageContent.body.value' />
       <hr>
