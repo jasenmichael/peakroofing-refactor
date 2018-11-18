@@ -1,51 +1,24 @@
 <template>
   <div>
-    <nav-bar/>
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <div class="columns">
-            <div class="column is-centered">
-              <Logo/>
-            </div>
-            <div class="column">
-              <font-awesome-icon
-                :icon="['fas', 'plus']" 
-                size="3x"
-              />
-            </div>
-            <div class="column">
-              <font-awesome-icon
-                :icon="['fab', 'drupal']" 
-                size="10x"
-              />
-            </div>
-          </div>
-          <h1 
-            class="title is-2"
-            v-html="pkg.name"/>
-          <h2
-            class="subtitle"
-            v-html="pkg.description"/>
-        </div>
-      </div>
-    </section>
-    <div>
-    </div>
+    <NavBar/>
+    <HomeBannerSlides/>
     <nuxt/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-const pkg = require("~/package")
-import Logo from "~/components/Logo.vue"
+// const pkg = require("~/package")
+import HomeBannerSlides from "~/components/HomeBannerSlides.vue"
 import NavBar from "~/components/NavBar.vue"
+import Footer from "~/components/Footer.vue"
+
 
 export default {
-  components: { Logo, NavBar },
+  components: { NavBar, Footer, HomeBannerSlides },
   data() {
     return {
-      pkg
+      // pkg
     }
   }
 }

@@ -3,7 +3,7 @@
   <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        <img src="/logo.png" width="48" height="48">
       </a>
 
       <a 
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import { getMenu } from '~/lib/api'
 
 export default {
@@ -63,7 +62,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 pre {
   padding-top: 4em;
 }

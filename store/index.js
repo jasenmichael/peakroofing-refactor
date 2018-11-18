@@ -12,8 +12,6 @@ const createStore = () => {
       },
       galleries: {}
     }),
-
-
     mutations: {},
     actions: {}
   })

@@ -3,8 +3,8 @@
       <h1 v-html='pageContent.title' />
       <div v-html='pageContent.body.value' />
       <hr>
-      <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2>
-      <pre> {{ pageContent }} </pre>
+      <!-- <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2> -->
+      <!-- <pre> {{ pageContent }} </pre> -->
     </section>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   },
   fetch({store, route}) {
     if (store.state.pages[route.params.page] === undefined ) {
-      return getPageContentByPath("/home")
+      return getPageContentByPath("/about")
         .then((res) => {
         store.state.pages.home = res.data[0].attributes
         this.pageContent = store.state.pages.home
@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 img {
   /* width: 40vw; */
   max-width: 400px;
