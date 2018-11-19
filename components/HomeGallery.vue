@@ -3,12 +3,10 @@
     <br><br><br>
     <h1>homeGallery mofos!</h1>
     <pre v-html="homeGallery" />
-
-    <div class="slider">
       <li v-for="slide in homeGallery" v-bind:key="slide.id">
-                <img class="scroll" :src="slide.url"/>
-      </li>
-    </div>  
+            <img class="scroll" :src="slide.url"/>
+      </li>  
+
   </div>
 </template>
 
@@ -40,6 +38,11 @@ export default {
 
 </script>
 
-<style>
-
+<style scoped>
+li {
+  list-style:none;  
+}
+img {
+  max-width: 400px;
+}
 </style>

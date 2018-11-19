@@ -4,7 +4,7 @@
       <div v-html='pageContent.body.value' />
       <hr>
       <!-- <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2> -->
-      <!-- <pre> {{ pageContent }} </pre> -->div
+      <!-- <pre> {{ pageContent }} </pre> -->
       <div>
         <Team/>
       </div>
@@ -18,8 +18,6 @@
 import { getPageContentByPath } from '~/lib/api'
 import HomeGallery from "~/components/HomeGallery.vue"
 import Team from "~/components/Team.vue"
-
-
 
 export default {
   layout: 'index',
