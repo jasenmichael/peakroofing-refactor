@@ -10,7 +10,10 @@ const createStore = () => {
         // main: [],
         // footer: []
       },
-      galleries: {}
+      galleries: {
+        // homeGallery
+        // homeBannerSlides
+      }
       // team: []
     }),
     mutations: {},
