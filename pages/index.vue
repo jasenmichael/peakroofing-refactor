@@ -5,14 +5,20 @@
       <hr>
       <!-- <h2>this is a {{ type }} with the name: {{ name }}, and path: {{ path }} </h2> -->
       <!-- <pre> {{ pageContent }} </pre> -->
+      <Team/>
     </section>
 </template>
 
 <script>
 import { getPageContentByPath } from '~/lib/api'
+import Team from "~/components/Team.vue"
+
 
 export default {
   layout: 'index',
+  components: {
+    Team
+  },
   data() {
     return {
       name: this.$nuxt.$route.params.page,

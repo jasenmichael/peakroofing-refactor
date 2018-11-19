@@ -11,6 +11,7 @@ const createStore = () => {
         // footer: []
       },
       galleries: {}
+      // team: []
     }),
     mutations: {},
     actions: {}
