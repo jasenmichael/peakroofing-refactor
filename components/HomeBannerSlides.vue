@@ -14,7 +14,7 @@
 
 <script>
 // import axios from 'axios'
-import { getImageGalleryByPath, getFileByUuid } from '~/lib/api'
+import { getImageGalleryByPath } from '~/lib/api'
 
 export default {
   data() {
