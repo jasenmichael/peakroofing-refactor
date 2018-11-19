@@ -13,7 +13,6 @@ import HomeBannerSlides from "~/components/HomeBannerSlides.vue"
 import NavBar from "~/components/NavBar.vue"
 import Footer from "~/components/Footer.vue"
 
-
 export default {
   components: { NavBar, Footer, HomeBannerSlides },
   data() {
